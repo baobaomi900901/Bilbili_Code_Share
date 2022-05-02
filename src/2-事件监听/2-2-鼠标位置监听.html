@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="../output.css" rel="stylesheet" />
+    <title>2-2-鼠标位置监听</title>
+  </head>
+  <body class="bg-gray-500 w-screen">
+    <canvas id="canvas" width="400" height="400" class="bg-white"></canvas>
+    <div id="testDiv" class="h-screen w-40 bg-yellow-100 ml-10"></div>
+    <script>
+      const canvas = document.getElementById("canvas");
+
+      canvas.addEventListener("mousemove", (e) => {
+        // console.log(e.type, e.offsetX, e.offsetY); // 元素内坐标
+      });
+
+      const testDiv = document.getElementById("testDiv");
+      testDiv.addEventListener("mousemove", (e) => {
+        // console.log(e.offsetX, e.offsetY); // 元素内部的坐标, 相对于带有定位的父盒子的x，y坐标
+        // console.log(e.clientX, e.clientY); // 元素可视区域内的坐标, 距离当前body可视区域的x，y坐标
+        // console.log(e.screenX, e.screenY); // 屏幕内的坐标, 对于整个页面来说，包括了被卷去的body部分的长度
+        // console.log(e.pageX, e.pageY); // 页面内的坐标, 对于整个页面来说，包括了被卷去的body部分的长度
+      });
+
+      canvas.addEventListener("mousewheel", (e) => {
+        // console.log(e.type, e.deltaX, e.deltaY); // 滚动坐标. 每次失焦后会归 0
+      });
+
+      const body = document.body;
+      body.addEventListener("mousewheel", (e) => {
+        // console.log(window.scrollY);
+      });
+    </script>
+  </body>
+</html>

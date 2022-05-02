@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="../output.css" rel="stylesheet" />
+    <title>2-3-键盘事件监听</title>
+  </head>
+  <body class="bg-gray-500 w-screen">
+    <canvas id="canvas" width="400" height="400" class="bg-white"></canvas>
+    <script>
+      const canvas = document.getElementById("canvas");
+
+      window.addEventListener("keydown", (event) => {
+        // event.type: 事件类型
+        // event.key: 事件对应的键值(字符串), 不建议使用
+        // event.code: 事件对应的键码(数值)
+        console.log(event.type, event.key, event.keyCode);
+      });
+
+      window.addEventListener("keyup", (event) => {
+        console.log(event.type, event.key, event.keyCode);
+      });
+
+      // 常用键位, 可以查看 ../hooks/keyboard.js
+    </script>
+  </body>
+</html>
