@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="../output.css" rel="stylesheet" />
+    <title>3-7-绘制波浪线</title>
+  </head>
+  <body class="bg-gray-500">
+    <canvas id="canvas" width="400" height="400" class="bg-white"></canvas>
+    <script type="module">
+      window.onload = function () {
+        const canvas = document.getElementById("canvas");
+        const ctx = canvas.getContext("2d");
+
+        // x y 两组速率
+        let angleX = 0;
+        let angleY = 0;
+        let speedX = 2;
+        let speedY = 0.2;
+
+        // y 浮动范围
+        let range = 50;
+
+        // y 点的基准位置
+        let centerY = canvas.height / 2;
+
+        // 点坐标
+        let posX = 0;
+        let posY = centerY;
+
+        function drawFrame() {
+          requestAnimationFrame(drawFrame);
+
+          // 开启一个路劲
+          ctx.beginPath();
+          ctx.moveTo(posX, posY);
+          posX += speedX;
+
+          posY = centerY + Math.sin(angleY) * range;
+          angleY += speedY;
+
+          ctx.lineTo(posX, posY);
+          ctx.stroke();
+        }
+        drawFrame();
+      };
+    </script>
+  </body>
+</html>

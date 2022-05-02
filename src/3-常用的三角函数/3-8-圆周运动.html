@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="../output.css" rel="stylesheet" />
+    <title>3-8-圆周运动</title>
+  </head>
+  <body class="bg-gray-500">
+    <canvas id="canvas" width="400" height="400" class="bg-white"></canvas>
+    <script type="module">
+      import Ball from "../hooks/Ball.js";
+      window.onload = function () {
+        const canvas = document.getElementById("canvas");
+        const ctx = canvas.getContext("2d");
+        const ball = new Ball(ctx, 40);
+
+        let angle = 0;
+        let speed = 0.05;
+
+        let radiusX = 0;
+        let radiusY = (radiusX = 40);
+
+        function drawFrame() {
+          requestAnimationFrame(drawFrame);
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+          ball.x = canvas.width / 2 + radiusX * Math.sin(angle);
+          ball.y = canvas.height / 2 + radiusY * Math.cos(angle);
+          //   angle += speed; // += 逆时针 -= 顺时针
+          angle -= speed;
+
+          ball.draw();
+        }
+        drawFrame();
+      };
+    </script>
+  </body>
+</html>
