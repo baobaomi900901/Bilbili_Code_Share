@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="../output.css" rel="stylesheet" />
-    <title>3-2-均速动画</title>
+    <title>3-3-设置运动范围&中心点&速度</title>
   </head>
   <body class="bg-gray-500">
     <canvas id="canvas" width="400" height="400" class="bg-white"></canvas>
@@ -15,6 +15,14 @@
         const ctx = canvas.getContext("2d");
         const ball = new Ball(ctx);
 
+        // 中心点
+        let centerX = 120;
+        let centerY = 120;
+        // 运动范围
+        let range = 10;
+        // 速度
+        let speed = 0.1;
+
         ball.x = canvas.width / 2;
         ball.y = canvas.height / 2;
 
@@ -24,16 +32,10 @@
           requestAnimationFrame(drawFrame);
           ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-          // 伪代码:
-          //   ball.y = canvas.height /2 + {浮动值: 50 ~ -50}
-          //   Math.sin(num) // 返回一个 1 ~ -1 区间 值
-          //   Math.sin(num) * 50 // 返回一个 -50 ~ 50 区间 值
-          //   控制 num 持续变化
+          ball.x = centerX + range * Math.sin(angle);
+          ball.y = centerY + range * Math.sin(angle);
 
-          ball.y = canvas.height / 2 + 50 * Math.sin(angle);
-          angle += 0.1;
-
-          //   console.log(50 * Math.sin(angle)); // 变化
+          angle += speed;
 
           ball.draw();
         }
