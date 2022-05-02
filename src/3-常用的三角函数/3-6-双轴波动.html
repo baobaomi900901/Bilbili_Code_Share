@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="../output.css" rel="stylesheet" />
-    <title>3-4-单轴波动</title>
+    <title>3-6-双轴波动</title>
   </head>
   <body class="bg-gray-500">
     <canvas id="canvas" width="400" height="400" class="bg-white"></canvas>
@@ -15,30 +15,23 @@
         const ctx = canvas.getContext("2d");
         const ball = new Ball(ctx, 50);
 
-        // 伪代码
-        // 初始化到屏幕中间
-        // scale 区间动画
-
-        ball.x = canvas.width / 2;
-        ball.y = canvas.height / 2;
-
-        let angle = 0;
-        let speed = 0.05; // 频率
-
-        let range = 0.2;
-
-        // 初始大小
-        let centerScale = 1;
+        let angleX = 0;
+        let angleY = 0;
+        let speedX = 0.07;
+        let speedY = 0.11;
 
         function drawFrame() {
           requestAnimationFrame(drawFrame);
           ctx.clearRect(0, 0, canvas.width, canvas.height);
-          ball.scaleX = ball.scaleY = centerScale + Math.sin(angle) * range;
-          angle += speed;
+
+          ball.x = canvas.width / 2 + 50 * Math.sin(angleX);
+          ball.y = canvas.height / 2 + 50 * Math.sin(angleY);
+          angleX += speedX;
+          angleY += speedY;
+
           ball.draw();
         }
         drawFrame();
-        console.log(ball.scaleX, ball.scaleX);
       };
     </script>
   </body>
