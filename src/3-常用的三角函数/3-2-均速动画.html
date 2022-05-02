@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="../output.css" rel="stylesheet" />
+    <title>3-1-对象跟随鼠标旋转</title>
+  </head>
+  <body class="bg-gray-500">
+    <canvas id="canvas" width="400" height="400" class="bg-white"></canvas>
+    <script type="module">
+      import Ball from "../hooks/Ball.js";
+      window.onload = function () {
+        const canvas = document.getElementById("canvas");
+        const ctx = canvas.getContext("2d");
+        const ball = new Ball(ctx);
+
+        ball.x = canvas.width / 2;
+        ball.y = canvas.height / 2;
+
+        let angle = 0;
+
+        function drawFrame() {
+          requestAnimationFrame(drawFrame);
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+          // 伪代码:
+          //   ball.y = canvas.height /2 + {浮动值: 50 ~ -50}
+          //   Math.sin(num) // 返回一个 1 ~ -1 区间 值
+          //   Math.sin(num) * 50 // 返回一个 -50 ~ 50 区间 值
+          //   控制 num 持续变化
+
+          ball.y = canvas.height / 2 + 50 * Math.sin(angle);
+          angle += 0.1;
+
+          //   console.log(50 * Math.sin(angle)); // 变化
+
+          ball.draw();
+        }
+        drawFrame();
+      };
+    </script>
+  </body>
+</html>
