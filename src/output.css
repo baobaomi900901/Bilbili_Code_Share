@@ -468,6 +468,18 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-backdrop-sepia:  ;
 }
 
+.m-40 {
+  margin: 10rem;
+}
+
+.m-64 {
+  margin: 16rem;
+}
+
+.m-10 {
+  margin: 2.5rem;
+}
+
 .ml-10 {
   margin-left: 2.5rem;
 }
@@ -510,6 +522,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-yellow-100 {
   --tw-bg-opacity: 1;
   background-color: rgb(254 249 195 / var(--tw-bg-opacity));
+}
+
+.p-64 {
+  padding: 16rem;
 }
 
 .text-3xl {
