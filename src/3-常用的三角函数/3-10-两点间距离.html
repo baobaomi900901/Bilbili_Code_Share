@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="../output.css" rel="stylesheet" />
+    <title>3-10-两点间距离</title>
+  </head>
+  <body class="bg-gray-500">
+    <canvas id="canvas" width="400" height="400" class="bg-white"></canvas>
+    <div class="mt-10 ml-4">
+      <p class="text-white">向量(r1 红色 对比 r2 蓝色):</p>
+      <br />
+      <textarea id="log" class="w-64 h-20"></textarea>
+    </div>
+    <script type="module">
+      window.onload = function () {
+        const log = document.getElementById("log");
+        const canvas = document.getElementById("canvas");
+        const ctx = canvas.getContext("2d");
+
+        let rect1 = {
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+        };
+
+        ctx.fillStyle = "red";
+        ctx.fillRect(rect1.x - 2, rect1.y - 2, 4, 4);
+
+        let rect2 = {
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+        };
+        let dx = rect2.x - rect1.x;
+        let dy = rect2.y - rect1.y;
+
+        let distance = Math.sqrt(dx * dx + dy * dy);
+
+        ctx.fillStyle = "blue";
+        ctx.fillRect(rect2.x - 2, rect2.y - 2, 4, 4);
+
+        log.value = `蓝点在红点的: ${dx < 0 ? "左" : "右"} ${
+          dy < 0 ? "上" : "下"
+        } (方)\ndistance: ${distance}`;
+      };
+    </script>
+  </body>
+</html>

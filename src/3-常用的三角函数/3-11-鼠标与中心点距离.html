@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="../output.css" rel="stylesheet" />
+    <title>3-11-鼠标与中心点距离</title>
+  </head>
+  <body class="bg-gray-500">
+    <canvas id="canvas" width="400" height="400" class="bg-white"></canvas>
+    <div class="mt-10 ml-4">
+      <p class="text-white">向量(r1 红色 对比 r2 蓝色):</p>
+      <br />
+      <textarea id="log" class="w-64 h-20"></textarea>
+    </div>
+    <script type="module">
+      import Utils from "../hooks/Utils.js";
+      window.onload = function () {
+        const log = document.getElementById("log");
+        const canvas = document.getElementById("canvas");
+        const utils = new Utils();
+        const mouse = utils.captureMouse(canvas);
+        const ctx = canvas.getContext("2d");
+
+        let rect = {
+          x: canvas.width / 2,
+          y: canvas.height / 2,
+        };
+
+        // 获取鼠标位置
+
+        function drawFrame() {
+          requestAnimationFrame(drawFrame);
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.fillRect(rect.x - 2, rect.y - 2, 4, 4);
+
+          ctx.beginPath();
+          ctx.moveTo(rect.x, rect.y);
+          ctx.lineTo(mouse.x, mouse.y);
+          ctx.stroke();
+
+          let dx = mouse.x - rect.x;
+          let dy = mouse.y - rect.y;
+
+          let distance = Math.sqrt(dx * dx + dy * dy);
+
+          log.value = `蓝点在红点的: ${dx < 0 ? "左" : "右"} ${
+            dy < 0 ? "上" : "下"
+          } (方)\ndistance: ${distance}`;
+        }
+        drawFrame();
+      };
+    </script>
+  </body>
+</html>
